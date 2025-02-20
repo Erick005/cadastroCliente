@@ -73,11 +73,7 @@ public class ClienteService {
     }
 
     private ClienteEntity buscaClientePorId(Long id) {
-        try {
-            return clienteRespository.findById(id)
-                    .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado. Verifique se os dados fornecidos estão corretos."));
-        } catch (NullPointerException e) {
-            throw new ClienteNaoEncontradoException("Cliente não encontrado. Verifique se os dados fornecidos estão corretos.");
-        }
+        return clienteRespository.findById(id)
+                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado. Verifique se os dados fornecidos estão corretos."));
     }
 }

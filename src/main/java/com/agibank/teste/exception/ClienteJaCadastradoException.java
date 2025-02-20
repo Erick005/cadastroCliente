@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 
 public class ClienteJaCadastradoException extends HttpException {
     public ClienteJaCadastradoException(String message) {
-        super(message, HttpStatus.CONFLICT);
+        super(message, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }
