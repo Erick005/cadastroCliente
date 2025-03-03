@@ -1,7 +1,6 @@
 package com.agibank.teste.api.request;
 
 import com.agibank.teste.annotation.MaiorDeIdade;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
 @Schema(description = "Dados necessários para a criação de um cliente no sistema.")
 public class CriaClienteRequest {
 
@@ -32,7 +31,7 @@ public class CriaClienteRequest {
     @Schema(description = "Email do cliente", example = "joao.silva@email.com")
     private String email;
 
-    @JsonFormat(pattern = "yyyy-MM-dd") // não precisa
+    @NotNull
     @MaiorDeIdade
     @Schema(description = "Data de nascimento do cliente. O cliente deve ser maior de idade.", example = "1990-05-25")
     private LocalDate dataNascimento;

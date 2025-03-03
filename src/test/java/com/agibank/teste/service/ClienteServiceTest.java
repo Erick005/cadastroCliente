@@ -143,7 +143,7 @@ class ClienteServiceTest {
     void deveLancaExcecaoQuandoClienteNaoEncontrado() {
         ClienteRequestDTO clienteRequestDTO = getClienteRequestDTO();
 
-        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(null);
+        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(Optional.empty());
 
         assertThrows(ClienteNaoEncontradoException.class, () -> clienteService.atualizaCliente(CLIENTE_ID, clienteRequestDTO));
 
@@ -175,7 +175,7 @@ class ClienteServiceTest {
     void deveRetornaErroQuandoClienteForInvalido() {
         ClienteEntity clienteEntity = getClienteEntity();
 
-        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(null);
+        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(Optional.empty());
 
         ClienteNaoEncontradoException exception = assertThrows(ClienteNaoEncontradoException.class, () -> clienteService.buscaCliente(CLIENTE_ID));
 
@@ -203,7 +203,7 @@ class ClienteServiceTest {
     void deveLancarExcecaoQuandoClienteNaoForEncontrado() {
         ClienteEntity clienteEntity = getClienteEntity();
 
-        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(null);
+        when(clienteRespository.findById(CLIENTE_ID)).thenReturn(Optional.empty());
 
         ClienteNaoEncontradoException exception = assertThrows(ClienteNaoEncontradoException.class, () -> clienteService.removeCliente(CLIENTE_ID));
 

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClienteResponseDTO {
 

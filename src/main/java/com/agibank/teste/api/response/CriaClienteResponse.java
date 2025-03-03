@@ -1,6 +1,5 @@
 package com.agibank.teste.api.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
 @Schema(description = "Resposta retornada após a criação de um novo cliente.")
 public class CriaClienteResponse {
 

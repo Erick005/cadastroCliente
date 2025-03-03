@@ -19,12 +19,14 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // Responsavel por capturar exceções personalizadas do tipo HttpException e devolver mensagem e status http de acordo com a exceção
     @ResponseBody
     @ExceptionHandler(HttpException.class)
     public ResponseEntity<ErroDTO> handlerHttpException(HttpException ex) {
         return ResponseEntity.status(ex.getHttpStatus().value()).body(new ErroDTO(ex.getMessage()));
     }
 
+    // Erro De Conversão de objeto
     @ResponseBody
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErroDTO> handlerMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
@@ -38,6 +40,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErroDTO(mensagem), HttpStatus.BAD_REQUEST);
     }
 
+    // Erro de validação
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErroDTO> handlerMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
@@ -51,6 +54,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErroDTO(mensagem), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    // Erro de data
     @ResponseBody
     @ExceptionHandler(DateTimeParseException.class)
     public ResponseEntity<ErroDTO> handleDateTimeParseException(DateTimeParseException ex) {
@@ -58,6 +62,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErroDTO(mensagem), HttpStatus.BAD_REQUEST);
     }
 
+    // Erro de cliente duplicado
     @ResponseBody
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErroDTO> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
