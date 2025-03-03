@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = ClienteAPI.class)
+@WebMvcTest(controllers = ClienteController.class)
 class ClienteControllerTest {
 
     @Autowired
@@ -71,7 +71,7 @@ class ClienteControllerTest {
                         post("/clientes")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(clienteRequestDTO)))
-                .andExpect(status().isConflict());
+                .andExpect(status().isUnprocessableEntity());
     }
 
     @Test

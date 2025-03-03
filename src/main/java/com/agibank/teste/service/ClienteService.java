@@ -7,23 +7,18 @@ import com.agibank.teste.exception.ClienteNaoEncontradoException;
 import com.agibank.teste.model.ClienteEntity;
 import com.agibank.teste.repository.ClienteRespository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@NoArgsConstructor(force = true)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ClienteService {
 
-    @Autowired
     private final ObjectMapper objectMapper;
 
-    @Autowired
     private final ClienteRespository clienteRespository;
 
     public ClienteResponseDTO criaCliente(ClienteRequestDTO requestDTO) {
@@ -61,9 +56,7 @@ public class ClienteService {
 
         final var buscaClientePorId = buscaClientePorId(id);
 
-        ClienteResponseDTO responseDTO = objectMapper.convertValue(buscaClientePorId, ClienteResponseDTO.class);
-
-        return responseDTO;
+        return objectMapper.convertValue(buscaClientePorId, ClienteResponseDTO.class);
     }
 
     public void removeCliente(Long id) {
@@ -73,7 +66,6 @@ public class ClienteService {
     }
 
     private ClienteEntity buscaClientePorId(Long id) {
-        return clienteRespository.findById(id)
-                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado. Verifique se os dados fornecidos estão corretos."));
+        return clienteRespository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("Cliente não encontrado. Verifique se os dados fornecidos estão corretos."));
     }
 }
